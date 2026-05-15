@@ -2,7 +2,7 @@
 
 ![Chess Analyzer Screenshot](public/screenshot.png)
 
-Chess Analyzer is a sleek, modern, and high-performance chess analysis tool built with React and powered by Stockfish. It provides deep move evaluations, multiple variants, and a premium user experience designed for serious chess enthusiasts.
+Chess Analyzer is a modern TypeScript React chess analysis tool powered by Stockfish. It provides deep move evaluations, saved sessions, hover previews, and a polished analysis workflow for serious chess study.
 
 ## Features
 
@@ -62,11 +62,12 @@ npm run build
 
 ## Technologies Used
 
-- **React**: Frontend framework.
+- **React + TypeScript**: Typed frontend application architecture.
 - **chess.js**: Move validation and game logic.
 - **react-chessboard**: Interactive chess board component.
 - **Lucide React**: Premium iconography.
 - **Vite**: Ultra-fast build tool.
+- **ESLint**: Static analysis for TypeScript and React code.
 
 
 ## License
