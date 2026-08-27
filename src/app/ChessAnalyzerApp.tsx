@@ -1,6 +1,7 @@
 // Coordinates chess state, engine analysis, persistence, board markup, and the application layout.
 import { useEffect, useRef, useState } from "react";
 import { Chess, type Move, type Square } from "chess.js";
+import { trackAppStartup } from "./telemetry";
 import AnalysisBoard from "../components/analysis-board/AnalysisBoard";
 import AnalysisSidebar from "../components/analysis-sidebar/AnalysisSidebar";
 import HoverPreviewBoard from "../components/hover-preview-board/HoverPreviewBoard";
@@ -164,6 +165,10 @@ export default function ChessAnalyzerApp() {
   const boardOverlayRef = useRef<HTMLDivElement | null>(null);
   const moveHistoryRef = useRef<HTMLDivElement | null>(null);
   const boardFen = history[currentMoveIndex]?.fen ?? new Chess().fen();
+
+  useEffect(() => {
+    void trackAppStartup();
+  }, []);
 
   useEffect(() => {
     historyRef.current = history;
