@@ -1,22 +1,7 @@
-// Boots the React application and mounts it into the document root.
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import ChessAnalyzerApp from "./app/ChessAnalyzerApp";
-import "./styles/global.css";
+// Mounts the React analysis workspace with development lifecycle checks.
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import './styles.scss';
 
-/** Mounts the chess analyzer into the root DOM element. */
-function mountApplication() {
-  const rootElement = document.getElementById("root");
-
-  if (!rootElement) {
-    throw new Error("Root element was not found.");
-  }
-
-  createRoot(rootElement).render(
-    <StrictMode>
-      <ChessAnalyzerApp />
-    </StrictMode>,
-  );
-}
-
-mountApplication();
+createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>);

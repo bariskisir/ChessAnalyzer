@@ -84,6 +84,9 @@ dist
 .pnp.*
 
 dist-ssr
+public/engine/
+playwright-report/
+test-results/
 *.local
 
 .idea

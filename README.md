@@ -1,75 +1,70 @@
-# Chess Analyzer
+﻿# Chess Analyzer
 
-![Chess Analyzer Screenshot](public/screenshot.png)
+![Chess Analyzer demo](public/chess-analyzer-demo.gif)
 
-Chess Analyzer is a modern TypeScript React chess analysis tool powered by Stockfish. It provides deep move evaluations, saved sessions, hover previews, and a polished analysis workflow for serious chess study.
+A React + TypeScript + SCSS chess analyzer with the original board-first layout. The green-and-cream squares and local Chess.com-style piece images are preserved. Local Stockfish 18 is the only engine.
 
-## Features
+Live demo: https://chess-analyzer-white.vercel.app/
 
-- **Deep Engine Evaluation**: Powered by Stockfish 17 via the chess-api.com
-- **Move History & Sessions**: Robust session management to save and review your games.
-- **Hover Peek**: Instantly preview positions in the engine lines by hovering over moves.
-- **Interactive Board**: High-quality chess board with custom pieces and smooth animations.
-- **Live Evaluation Bar**: Visual feedback on the current position's balance.
-- **Resilient API**: Built-in retry logic, exponential backoff, and usage limit handling.
+## Run
 
-## Live Demo
+Requires Node.js 24 or newer.
 
-<a href="https://chess-analyzer-white.vercel.app/" target="_blank">Visit the Live Demo</a>
-
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v16.x or later)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/bariskisir/ChessAnalyzer.git
-   ```
-
-2. Navigate to the project directory:
-   ```bash
-   cd ChessAnalyzer
-   ```
-
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-### Running Locally
-
-To start the development server:
-
-```bash
+```sh
+npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`.
+Open `http://localhost:5173`. The development server also accepts local network connections for testing on a phone.
 
-### Building for Production
-
-To create a production build:
-
-```bash
+```sh
 npm run build
+npm run preview
 ```
 
-## Technologies Used
+Deploy `dist` to a static host. Install, development, and build hooks copy the pinned `stockfish@18.0.8` single-threaded Lite worker, WASM binary, and license into `public/engine`. No backend or cross-origin isolation headers are required.
 
-- **React + TypeScript**: Typed frontend application architecture.
-- **chess.js**: Move validation and game logic.
-- **react-chessboard**: Interactive chess board component.
-- **Lucide React**: Premium iconography.
-- **Vite**: Ultra-fast build tool.
-- **ESLint**: Static analysis for TypeScript and React code.
+## Original workflow
 
+- Large board on the left, Analysis/Games sidebar on the right. Mobile places the board first, with accessible analysis and game controls underneath.
+- Original piece images from `public/pieces`, green `#779954` squares, and cream `#e9edcc` squares on the main board and previews.
+- Hover an engine move, history move, variation, or saved game to preview its position. Click or tap a move to jump directly there.
+- FEN/PGN import opens in a popup from the FEN row. Copy FEN and export the active game as PGN.
+- Depth and principal-variation count live in the settings popup. There is no remote provider, engine selector, or thinking-time setting.
+- Stockfish starts immediately and searches with `go depth`. Results stream as they arrive. Cancellation terminates obsolete workers; there is no deliberate thinking delay or move-time budget.
+- Completed local results are cached by position and settings. Nearby history is analyzed sequentially after the visible position is complete. The evaluation bar retains its last score until another evaluation is available.
+- Games, the active cursor, and alternative continuations save automatically. Reload returns to the last active position. Inactive games can be deleted from the Games tab.
+- Following an existing move preserves the remaining continuation. Branching preserves the old line as an alternative; the Variations control switches between saved paths.
+- Existing records from the original `chess_games` storage and the previous saved-game format are migrated on first use.
+- Arrow keys navigate moves, Up/Down jump to the start/end, F flips the board, and Space plays the current engine best move. Shortcuts do not intercept text input or modal dialogs.
+- Control-click highlights a square, Control-drag draws an arrow, and right-click clears markup. Touch moves, dragging, all four promotion choices, and game-over detection remain available.
 
-## License
+## Checks
 
-This project is licensed under the MIT License - see the <a href="LICENSE" target="_blank">LICENSE</a> file for details.
+```sh
+npm run lint
+npm test
+npm run build
+npx playwright install chromium
+npm run test:e2e
+```
+
+Lint enforces comments at the top of project-owned code files and above every implemented function. Code, comments, and interface text are in English. All authored styles use SCSS.
+
+Browser tests exercise the actual npm Stockfish WASM engine at desktop and phone viewport sizes, popup import/settings, direct move navigation, hover previews, autosave, alternative lines, evaluation continuity, piece assets, square colors, promotion, and export.
+
+## Main files
+
+- `src/App.tsx`: original analysis/game layout and game lifecycle.
+- `src/components/Board.tsx`: original pieces, touch/drag moves, promotion, and board markup.
+- `src/components/MoveButton.tsx`: floating hover previews and immediate navigation.
+- `src/components/EvaluationBar.tsx`: retained evaluation and smooth transitions.
+- `src/components/Modal.tsx`: native focus-trapped popup dialogs.
+- `src/engines.ts`: local UCI worker with depth-based searches.
+- `src/useAnalysis.ts`: immediate analysis, cancellation, local cache, and nearby history evaluation.
+- `src/storage.ts`: autosave, validation, and migration of older games.
+- `src/styles.scss`: original layout and responsive styles.
+
+## Licenses
+
+Application code uses the [MIT license](LICENSE). Stockfish.js is a separate GPL-3.0 dependency by Nathan Rugg / Chess.com and the Stockfish contributors. Its worker, WASM binary, and `Copying.txt` are copied unchanged from the pinned npm package. See [Stockfish.js source](https://github.com/nmrugg/stockfish.js) and [the exact npm package](https://www.npmjs.com/package/stockfish/v/18.0.8). Preserve the engine license and comply with its source-distribution requirements when redistributing it. License and source links are also available in the engine settings popup.
