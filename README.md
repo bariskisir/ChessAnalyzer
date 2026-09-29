@@ -2,7 +2,7 @@
 
 ![Chess Analyzer demo](public/chess-analyzer-demo.gif)
 
-A React + TypeScript + SCSS chess analyzer with the original board-first layout. The green-and-cream squares and local Chess.com-style piece images are preserved. Local Stockfish 18 is the only engine.
+A React + TypeScript + SCSS chess analyzer with the original board-first layout. The green-and-cream squares and local Chess.com-style piece images are preserved. Local Stockfish 19 is the only engine.
 
 Live demo: https://chess-analyzer-white.vercel.app/
 
@@ -22,7 +22,7 @@ npm run build
 npm run preview
 ```
 
-Deploy `dist` to a static host. Install, development, and build hooks copy the pinned `stockfish@18.0.8` single-threaded Lite worker, WASM binary, and license into `public/engine`. No backend or cross-origin isolation headers are required.
+Deploy `dist` to a static host. Install, development, and build hooks copy the pinned `stockfish@19.0.0` single-threaded Lite worker, WASM binary, and license into `public/engine`. No backend or cross-origin isolation headers are required.
 
 ## Original workflow
 
@@ -67,4 +67,4 @@ Browser tests exercise the actual npm Stockfish WASM engine at desktop and phone
 
 ## Licenses
 
-Application code uses the [MIT license](LICENSE). Stockfish.js is a separate GPL-3.0 dependency by Nathan Rugg / Chess.com and the Stockfish contributors. Its worker, WASM binary, and `Copying.txt` are copied unchanged from the pinned npm package. See [Stockfish.js source](https://github.com/nmrugg/stockfish.js) and [the exact npm package](https://www.npmjs.com/package/stockfish/v/18.0.8). Preserve the engine license and comply with its source-distribution requirements when redistributing it. License and source links are also available in the engine settings popup.
+Application code uses the [MIT license](LICENSE). Stockfish.js is a separate GPL-3.0 dependency by Nathan Rugg / Chess.com and the Stockfish contributors. Its worker, WASM binary, and `Copying.txt` are copied unchanged from the pinned npm package. See [Stockfish.js source](https://github.com/nmrugg/stockfish.js) and [the exact npm package](https://www.npmjs.com/package/stockfish/v/19.0.0). Preserve the engine license and comply with its source-distribution requirements when redistributing it. License and source links are also available in the engine settings popup.

@@ -252,7 +252,7 @@ export default function App() {
     )}</select></label><label>Lines<select name="lines" aria-label="Variation count" value={settings.lines} onChange={changeSetting}>{[1, 2, 3, 4, 5].map(
       /** Renders the number of locally analyzed principal variations. */
       (lines) => <option key={lines} value={lines}>{lines}</option>,
-    )}</select></label></div><button className="primary-button" onClick={closePopup}>Done</button><p className="engine-license">Stockfish 18 · <a href={`${import.meta.env.BASE_URL}engine/Copying.txt`} target="_blank" rel="noreferrer">GPL-3.0</a> · <a href="https://github.com/nmrugg/stockfish.js" target="_blank" rel="noreferrer">Source</a></p></Modal>}
+    )}</select></label></div><button className="primary-button" onClick={closePopup}>Done</button><p className="engine-license">Stockfish 19 · <a href={`${import.meta.env.BASE_URL}engine/Copying.txt`} target="_blank" rel="noreferrer">GPL-3.0</a> · <a href="https://github.com/nmrugg/stockfish.js" target="_blank" rel="noreferrer">Source</a></p></Modal>}
     {notice && <div className="notice" role="status">{notice}<button onClick={clearNotice} aria-label="Dismiss notification">×</button></div>}
   </main>;
 }

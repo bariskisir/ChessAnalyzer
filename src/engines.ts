@@ -37,7 +37,7 @@ export function analyzeLocal(
     /** Owns the worker lifecycle, UCI handshake, timeout, and cancellation. */
     (resolve, reject) => {
       if (signal.aborted) { reject(new DOMException('Analysis cancelled', 'AbortError')); return; }
-      const worker = new Worker(`${import.meta.env.BASE_URL}engine/stockfish-18-lite-single.js`);
+      const worker = new Worker(`${import.meta.env.BASE_URL}engine/stockfish-19-lite-single.js`);
       const lines = new Map<number, AnalysisLine>();
       const iterations = new Map<number, Map<number, AnalysisLine>>();
       const expected = Math.min(settings.lines, new Chess(fen).moves().length);

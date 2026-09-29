@@ -13,7 +13,7 @@ interface EnginePanelProps {
 /** Renders progressive local results without exposing settings or provider selectors in the main panel. */
 export default function EnginePanel({ fen, flipped, lines, busy, error, paused, terminal, onToggle, onRetry, onSettings, onPlay }: EnginePanelProps) {
   return <section className="eval-box" aria-label="Engine analysis">
-    <div className="settings-bar"><span>Stockfish 18 · Local</span><div>
+    <div className="settings-bar"><span>Stockfish 19 · Local</span><div>
       <button className="icon-button" aria-label={paused ? 'Resume analysis' : 'Pause analysis'} onClick={onToggle}>{paused ? <Play size={15} /> : <Pause size={15} />}</button>
       <button className="icon-button" aria-label="Engine settings" onClick={onSettings}><Settings size={19} /></button>
     </div></div>

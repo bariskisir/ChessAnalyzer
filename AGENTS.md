@@ -4,7 +4,7 @@
 
 These instructions apply to the entire repository.
 
-Chess Analyzer is a browser-only React application for exploring chess positions and games. It uses TypeScript, SCSS, Vite, `chess.js`, `react-chessboard`, and a local Stockfish 18 WebAssembly worker. Preserve the existing board-first experience unless a task explicitly asks for a redesign.
+Chess Analyzer is a browser-only React application for exploring chess positions and games. It uses TypeScript, SCSS, Vite, `chess.js`, `react-chessboard`, and a local Stockfish 19 WebAssembly worker. Preserve the existing board-first experience unless a task explicitly asks for a redesign.
 
 ## Required environment
 
@@ -15,7 +15,7 @@ Chess Analyzer is a browser-only React application for exploring chess positions
 - Preview the production build with `npm run preview`.
 - Do not commit `node_modules`, `dist`, `public/engine`, `playwright-report`, or `test-results`.
 
-The `postinstall`, `predev`, and `prebuild` hooks run `scripts/prepare-engine.ts`. This copies the pinned Stockfish worker, WASM binary, and GPL license from `stockfish@18.0.8` into `public/engine`. Treat `public/engine` as generated output; change the package version or preparation script instead of editing generated engine files.
+The `postinstall`, `predev`, and `prebuild` hooks run `scripts/prepare-engine.ts`. This copies the pinned Stockfish worker, WASM binary, and GPL license from `stockfish@19.0.0` into `public/engine`. Treat `public/engine` as generated output; change the package version or preparation script instead of editing generated engine files.
 
 ## Validation commands
 
@@ -84,7 +84,7 @@ Keep domain logic out of JSX when it can be tested as a pure function in `src/ch
 
 ### Engine behavior
 
-- Local Stockfish 18 Lite Single is the only engine. Do not add Chess.com, chess-api.com, another remote provider, or an engine selector without an explicit request.
+- Local Stockfish 19 Lite Single is the only engine. Do not add Chess.com, chess-api.com, another remote provider, or an engine selector without an explicit request.
 - Search with `go depth <depth>`. There is no thinking-time setting and no `movetime` command.
 - Begin analysis immediately. Do not introduce an artificial debounce, delay, or autoplay wait.
 - Each search owns an isolated Web Worker. Abort and terminate obsolete workers when the position, settings, paused state, or component lifecycle changes.
