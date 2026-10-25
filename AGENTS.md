@@ -15,7 +15,7 @@ Chess Analyzer is a browser-only React application for exploring chess positions
 - Preview the production build with `npm run preview`.
 - Do not commit `node_modules`, `dist`, `public/engine`, `playwright-report`, or `test-results`.
 
-The `postinstall`, `predev`, and `prebuild` hooks run `scripts/prepare-engine.ts`. This copies the pinned Stockfish worker, WASM binary, and GPL license from `stockfish@19.0.0` into `public/engine`. Treat `public/engine` as generated output; change the package version or preparation script instead of editing generated engine files.
+The `postinstall`, `predev`, and `prebuild` hooks run `scripts/prepare-engine.ts`. This copies the pinned Stockfish worker, WASM binary, and GPL license from `stockfish@19.0.1` into `public/engine`. Treat `public/engine` as generated output; change the package version or preparation script instead of editing generated engine files.
 
 ## Validation commands
 
